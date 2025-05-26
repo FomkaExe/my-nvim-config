@@ -4,3 +4,6 @@
 [submodule "pack/3rd-party/start/nvim-lspconfig"]
 	path = pack/3rd-party/start/nvim-lspconfig
 	url = https://github.com/neovim/nvim-lspconfig.git
+[submodule "pack/3rd-party/start/clangd_extensions.nvim"]
+	path = pack/3rd-party/start/clangd_extensions.nvim
+	url = https://github.com/p00f/clangd_extensions.nvim.git
