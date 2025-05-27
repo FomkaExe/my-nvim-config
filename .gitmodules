@@ -7,3 +7,6 @@
 [submodule "pack/3rd-party/start/clangd_extensions.nvim"]
 	path = pack/3rd-party/start/clangd_extensions.nvim
 	url = https://github.com/p00f/clangd_extensions.nvim.git
+[submodule "pack/3rd-party/start/tokyonight.nvim"]
+	path = pack/3rd-party/start/tokyonight.nvim
+	url = https://github.com/folke/tokyonight.nvim.git
