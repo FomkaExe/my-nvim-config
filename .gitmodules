@@ -10,3 +10,45 @@
 [submodule "pack/3rd-party/start/tokyonight.nvim"]
 	path = pack/3rd-party/start/tokyonight.nvim
 	url = https://github.com/folke/tokyonight.nvim.git
+[submodule "pack/3rd-party/start/which-key.nvim"]
+	path = pack/3rd-party/start/which-key.nvim
+	url = https://github.com/folke/which-key.nvim.git
+[submodule "pack/3rd-party/start/mini.clue"]
+	path = pack/3rd-party/start/mini.clue
+	url = https://github.com/nvim-mini/mini.clue.git
+[submodule "pack/3rd-party/start/mason.nvim"]
+	path = pack/3rd-party/start/mason.nvim
+	url = https://github.com/mason-org/mason.nvim.git
+[submodule "pack/3rd-party/start/classlayout.nvim"]
+	path = pack/3rd-party/start/classlayout.nvim
+	url = https://github.com/J-Cowsert/classlayout.nvim.git
+[submodule "pack/3rd-party/start/blink.cmp"]
+	path = pack/3rd-party/start/blink.cmp
+	url = https://github.com/saghen/blink.cmp.git
+[submodule "pack/3rd-party/start/nvim-web-devicons"]
+	path = pack/3rd-party/start/nvim-web-devicons
+	url = https://github.com/nvim-tree/nvim-web-devicons.git
+[submodule "pack/3rd-party/start/pack/vendor/start/nvim-cmp"]
+	path = pack/3rd-party/start/pack/vendor/start/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp.git
+[submodule "pack/3rd-party/start/pack/vendor/start/cmp-nvim-lsp"]
+	path = pack/3rd-party/start/pack/vendor/start/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
+[submodule "pack/3rd-party/start/pack/vendor/start/cmp-buffer"]
+	path = pack/3rd-party/start/pack/vendor/start/cmp-buffer
+	url = https://github.com/hrsh7th/cmp-buffer.git
+[submodule "pack/3rd-party/start/pack/vendor/start/cmp-path"]
+	path = pack/3rd-party/start/pack/vendor/start/cmp-path
+	url = https://github.com/hrsh7th/cmp-path.git
+[submodule "pack/3rd-party/start/nvim-cmp"]
+	path = pack/3rd-party/start/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp.git
+[submodule "pack/3rd-party/start/cmp-nvim-lsp"]
+	path = pack/3rd-party/start/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp.git
+[submodule "pack/3rd-party/start/cmp-buffer"]
+	path = pack/3rd-party/start/cmp-buffer
+	url = https://github.com/hrsh7th/cmp-buffer.git
+[submodule "pack/3rd-party/start/cmp-path"]
+	path = pack/3rd-party/start/cmp-path
+	url = https://github.com/hrsh7th/cmp-path.git

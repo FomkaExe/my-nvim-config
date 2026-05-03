@@ -1,24 +1,36 @@
--- Vim options
-
+---- Vim options
+-- visual
 vim.o.number = true
-vim.o.wrap = true
+vim.o.relativenumber = true
+vim.o.showmode = true
+vim.o.signcolumn = 'yes'
 
+-- search
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.hlsearch = true
 
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+-- Indentation and wrapping
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+vim.o.smarttab = true
+vim.o.smartindent = true
+vim.o.wrap = true
+vim.o.scrolloff = 8
 
-vim.o.showmode = true
+-- Colors
+vim.opt.colorcolumn = {"80", "100"}
+vim.opt.termguicolors = true
 
-vim.o.termguicolors = true
+vim.o.updatetime = 700
+vim.o.timeout = true
+vim.o.timeoutlen = 200
+vim.o.ttimeoutlen = 10
 
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.opt.winborder = "rounded"
 
-vim.o.signcolumn = 'yes'
-
+-- Leader & copy-paste
 vim.g.mapleader = vim.keycode('<Space>')
 vim.keymap.set({'n', 'x'}, 'gy', '"+y', {desc = 'Copy to clipboard'})
 vim.keymap.set({'n', 'x'}, 'gp', '"+p', {desc = 'Paste clipboard content'})
@@ -32,45 +44,91 @@ end
 
 -- Plugins
 
--- -- mini.nvim setup
-require('mini.files').setup({})
-vim.keymap.set('n', '<leader>e', '<cmd>lua MiniFiles.open()<cr>', {desc='File Explorer'})
+-- -- clangd
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client or client.name ~= "clangd" then
+      return
+    end
 
-require('mini.snippets').setup({})
-require('mini.completion').setup({})
-require('mini.icons').setup({})
-require('mini.starter').setup({
-	header = 'Emacs',
-})
-require('mini.comment').setup({
-	options = {
-		custom_commentstring = nil,
-		ignore_blank_line = false,
-		start_of_line = false,
-		pad_comment_parts = true,
-	},
-	mappings = {
-		comment = '<leader>c',
-		comment_line = '<leader>cc',
-		comment_visual = '<leader>c',
-		textobject = '<leader>c',
-	},
-	hooks = {
-		pre = function() end,
-		post = function() end,
-	},
-})
+    local bufnr = args.buf
 
--- -- clangd setup
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
+      buffer = bufnr,
+      silent = true,
+      noremap = true,
+      desc = "Go to definition"
+    })
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {
+      buffer = bufnr,
+      silent = true,
+      noremap = true,
+      desc = "Go to declaration"
+    })
+    vim.keymap.set("n", "<leader>d", "<cmd>LspClangdSwitchSourceHeader<CR>", opts)
+    vim.keymap.set("n", "<leader>s", "<cmd>LspClangdShowSymbolInfo<CR>", opts)
+  end,
+})
 
 vim.lsp.enable('clangd')
-require("clangd_extensions").setup({})
 
--- -- clangd keybinds
+-- -- nvim-cmp
+local cmp = require("cmp")
 
-vim.keymap.set('n', '<leader>d', '<cmd>ClangdSwitchSourceHeader<cr>', {desc='Goto definition'})
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.snippet.expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = cmp.mapping.select_next_item(),
+    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+  }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "buffer" },
+  }),
+})
 
-vim.keymap.set('n', '<leader>a', '<cmd>ClangdAST<cr>', {desc='Abstract Syntax Tree'})
-vim.keymap.set('x', '<leader>a', '<cmd>\'<,\'>ClangdAST<cr>', {desc='Abstract Syntax Tree'})
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-vim.keymap.set('n', '<leader>t', '<cmd>ClangdTypeHierarchy<cr>', {desc='Type hierarchy'})
+-- -- classlayout.nvim
+require("classlayout").setup({
+  keymap = "<leader>c",
+  compiler = "clang",
+  args = {},
+  compile_commands = true,
+  { desc = "Class layout" }
+})
+
+-- -- Diagnostic setup
+
+vim.diagnostic.config({
+  signs = true,
+  inderline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+})
+
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {desc = "Open diagnostic"})
+
+vim.keymap.set("n", "<leader>f", function()
+  vim.lsp.buf.format({ async = true })
+end,
+{ desc = "Clang-format" })
+
+-- nvim-web-devicons
+require('nvim-web-devicons').setup()
+
+
