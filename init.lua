@@ -19,6 +19,13 @@ vim.o.smartindent = true
 vim.o.wrap = true
 vim.o.scrolloff = 8
 
+-- Folding
+vim.opt.foldmethod = "syntax"
+-- vim.opt.foldlevelstart = 2
+-- vim.opt.foldlevel  = 99
+vim.opt.foldnestmax = 1
+vim.opt.foldcolumn = "0"
+
 -- Colors
 vim.opt.colorcolumn = {"80", "100"}
 vim.opt.termguicolors = true
