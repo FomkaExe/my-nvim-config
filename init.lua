@@ -17,13 +17,13 @@ vim.o.expandtab = true
 vim.o.smarttab = true
 vim.o.smartindent = true
 vim.o.wrap = true
-vim.o.scrolloff = 8
+vim.o.scrolloff = 16
 
 -- Folding
 vim.opt.foldmethod = "syntax"
--- vim.opt.foldlevelstart = 2
--- vim.opt.foldlevel  = 99
-vim.opt.foldnestmax = 1
+vim.opt.foldlevelstart = 1
+vim.opt.foldlevel  = 99
+-- vim.opt.foldnestmax = 1
 vim.opt.foldcolumn = "0"
 
 -- Colors
@@ -36,6 +36,14 @@ vim.o.timeoutlen = 200
 vim.o.ttimeoutlen = 10
 
 vim.opt.winborder = "rounded"
+
+vim.opt.list = true
+vim.opt.listchars = {
+  space = '·',
+  tab = '» ',
+  trail = '•',
+  nbsp = '␣',
+}
 
 -- Leader & copy-paste
 vim.g.mapleader = vim.keycode('<Space>')
