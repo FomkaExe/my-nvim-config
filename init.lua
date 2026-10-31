@@ -30,7 +30,7 @@ vim.opt.foldcolumn = "0"
 vim.opt.colorcolumn = {"80", "100"}
 vim.opt.termguicolors = true
 
-vim.o.updatetime = 700
+vim.o.updatetime = 300
 vim.o.timeout = true
 vim.o.timeoutlen = 200
 vim.o.ttimeoutlen = 10
@@ -119,6 +119,15 @@ require("classlayout").setup({
   args = {},
   compile_commands = true,
   { desc = "Class layout" }
+})
+
+require("lsp_signature").setup({
+  bind = true,
+  doc_lines = 10,          -- how many doc lines to show
+  floating_window = true,
+  hi_parameter = "LspSignatureActiveParameter",
+  handler_opts = { border = "rounded" },
+  toggle_key = nil,        -- always on while typing
 })
 
 -- -- Diagnostic setup
